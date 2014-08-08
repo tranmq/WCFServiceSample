@@ -7,24 +7,24 @@ namespace WrgPrototype.Implementations
 {
     public class UserService : IUserService
     {
-        private static readonly Users _users = new Users();
+        private static readonly Users Users = new Users();
 
         static UserService()
         {
             XElement mq = XElement.Parse("<MQ><Gender>Male</Gender><Hobbies><Soccer/><MartialArts/><PingPong/></Hobbies></MQ>");
 
-            _users.Add(new User{Email = "abc@abc.com", FirstName = "ABC", LastName = "123", UserId="888", Notes = mq});
+            Users.Add(new User{Email = "abc@abc.com", FirstName = "ABC", LastName = "123", UserId="888", Notes = mq});
         }
 
         public Users GetAllUsers()
         {
-            return _users;
+            return Users;
         }
 
         public User AddUser(User user)
         {
             user.UserId = Guid.NewGuid().ToString();
-            _users.Add(user);
+            Users.Add(user);
 
             return user;
         }
@@ -38,7 +38,7 @@ namespace WrgPrototype.Implementations
         public void DeleteUser(string userId)
         {
             var foundUser = FindUser(userId);
-            _users.Remove(foundUser);
+            Users.Remove(foundUser);
         }
 
         public User UpdateUser(string userId, User user)
@@ -56,7 +56,7 @@ namespace WrgPrototype.Implementations
 
         private User FindUser(string userId)
         {
-            var foundUser = (from u in _users where u.UserId == userId select u).Single();
+            var foundUser = (from u in Users where u.UserId == userId select u).Single();
             User ret = foundUser ?? new User();
 
             return ret;
