@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using System.Xml.Linq;
 
 namespace WrgPrototype.Contracts
 {
@@ -16,5 +17,8 @@ namespace WrgPrototype.Contracts
         
         [DataMember( Name = "email", Order = 4)]
         public string Email;
+
+        [DataMember(Name = "notes")]
+        public XElement Notes;
     }
 }

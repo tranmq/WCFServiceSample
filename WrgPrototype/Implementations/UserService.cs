@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Xml.Linq;
 using WrgPrototype.Contracts;
 
 namespace WrgPrototype.Implementations
@@ -10,7 +11,9 @@ namespace WrgPrototype.Implementations
 
         static UserService()
         {
-            _users.Add(new User{Email = "abc@abc.com", FirstName = "ABC", LastName = "123", UserId="888"});
+            XElement mq = XElement.Parse("<MQ><Gender>Male</Gender><Hobbies><Soccer/><MartialArts/><PingPong/></Hobbies></MQ>");
+
+            _users.Add(new User{Email = "abc@abc.com", FirstName = "ABC", LastName = "123", UserId="888", Notes = mq});
         }
 
         public Users GetAllUsers()
